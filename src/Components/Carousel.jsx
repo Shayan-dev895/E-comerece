@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchproducts } from "../redux/ProductSlice";
+import { fetchproducts } from "../Redux/Productslice.js";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
