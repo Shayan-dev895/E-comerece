@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectBrands, selectCategories } from "../Redux/ProductSlice";
+import { selectBrands, selectCategories } from "../Redux/Productslice";
 
 function FilterProduct({ minPrice, maxPrice, search, setsearch, category, handlecategory, handlebrand, brand, range, setrange }) {
     const select = useSelector(selectCategories)
