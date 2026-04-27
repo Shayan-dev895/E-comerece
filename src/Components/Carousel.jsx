@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Category from "./Category";
 import { useNavigate } from "react-router-dom";
-import CarouselSkeleton from "./carouselskeleton";
+import CarouselSkeleton from "./CarouselSkeleton";
 
 function Carousel() {
   const dispatch = useDispatch();
