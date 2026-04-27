@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchproducts } from "../Redux/Productslice.js";
+import { fetchproducts } from "../Redux/Productslice";
 import FilterProduct from "../Components/Filterproducts";
 import Productcard from "../Components/Productcard";
 import { ListFilter, X } from "lucide-react";
