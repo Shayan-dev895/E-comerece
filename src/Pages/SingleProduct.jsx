@@ -1,7 +1,7 @@
 import { useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectProductById } from "../Redux/ProductSlice";
+import { selectProductById } from "../Redux/Productslice.js";
 import Breadcrums from "./Breadcrums";
 import { IoCartOutline } from "react-icons/io5";
 import { additem } from "../Redux/Cartslice";
