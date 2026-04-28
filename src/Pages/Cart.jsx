@@ -1,23 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { removeitem, increaseQty, decreaseQty, clearcart } from "../Redux/Cartslice";
+ import { auth } from "../firebase";
 import { useNavigate } from "react-router";
 
 function Cart() {
     const dispatch = useDispatch();
     const navigate=useNavigate()
     const cartitems = useSelector((state) => state.cart.items);
+  
+   
+
+const isLoggedIn = auth.currentUser;
 
     const totalPrice = cartitems.reduce(
         (acc, item) => acc + item.price * item.quantity,
         0
     );
-    const handleCheckout = () => {
-        dispatch(clearcart()); // cart empty
-        alert("Order Completed 🎉");
-        navigate("/product")
+const handleCheckout = () => {
+    if (!auth.currentUser) {
+        alert("Please login first 🔐");
+        navigate("/signin");
+        return;
+    }
 
-    };
+    dispatch(clearcart());
+    alert("Order Completed 🎉");
+    navigate("/product");
+};
 
     return (
         <div className="max-w-6xl mx-auto mt-10 px-2 sm:px-4">

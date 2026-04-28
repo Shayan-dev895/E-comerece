@@ -37,18 +37,31 @@ function Footer() {
         </div>
 
         {/* Social Icons */}
-        <div>
-          <h3 className="text-base sm:text-lg font-semibold text-white mb-4">
-            Follow Us
-          </h3>
+      <div>
+  <h3 className="text-base sm:text-lg font-semibold text-white mb-4">
+    Follow Us
+  </h3>
 
-          <div className="flex gap-4 text-xl">
-            <FaFacebook className="hover:text-white cursor-pointer" />
-            <FaInstagram className="hover:text-white cursor-pointer" />
-            <FaTwitter className="hover:text-white cursor-pointer" />
-            <FaPinterest className="hover:text-white cursor-pointer" />
-          </div>
-        </div>
+  <div className="flex gap-4 text-xl">
+    
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+      <FaFacebook className="hover:text-blue-500 cursor-pointer transition" />
+    </a>
+
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+      <FaInstagram className="hover:text-pink-500 cursor-pointer transition" />
+    </a>
+
+    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+      <FaTwitter className="hover:text-sky-400 cursor-pointer transition" />
+    </a>
+
+    <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
+      <FaPinterest className="hover:text-red-500 cursor-pointer transition" />
+    </a>
+
+  </div>
+</div>
 
         {/* Newsletter */}
         <div>

@@ -13,7 +13,7 @@ function HeroBanner() {
           className="h-100 bg-fixed bg-center bg-cover flex items-center justify-center"
           style={{
             backgroundImage:
-              "url('public/images/photo-1531297484001-80022131f5a1.avif')",
+              "url('/images/photo-1531297484001-80022131f5a1.avif')",
           }}
          >
          

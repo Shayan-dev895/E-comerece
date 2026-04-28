@@ -1,65 +1,128 @@
 import { useState } from "react";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 function Signup() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const signup = async () => {
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            navigate("/");
-        } catch (error) {
-            alert(error.message);
-        }
-    };
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
+  // Email Signup
+  const signup = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Account created ✅");
+      navigate("/");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
-                <h2 className="text-3xl font-bold text-center mb-6 text-gray-700">
-                    Create Account
-                </h2>
+  // Google Signup/Login
+  const signupWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      alert("Google Signup/Login successful ✅");
+      navigate("/");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
-                {/* Email */}
-                <input
-                    type="email"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
-                />
+  // GitHub Signup/Login
+  const signupWithGithub = async () => {
+    try {
+      await signInWithPopup(auth, githubProvider);
+      alert("GitHub Signup/Login successful ✅");
+      navigate("/");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
-                {/* Password */}
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
-                />
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
 
-                {/* Button */}
-                <button
-                    onClick={signup}
-                    className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition"
-                >
-                    Signup
-                </button>
+        <h2 className="text-3xl font-bold text-center mb-6 text-gray-700">
+          Create Account
+        </h2>
 
-                {/* Footer text */}
-                <p className="text-center text-sm text-gray-500 mt-4">
-                    Already have an account? <span className="text-red-500 cursor-pointer" onClick={()=>navigate("/signin")}>Login</span>
-                </p>
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+        />
 
-            </div>
+        {/* Password */}
+        <input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+        />
+
+        {/* Signup Button */}
+        <button
+          onClick={signup}
+          className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition"
+        >
+          Signup
+        </button>
+
+        {/* Divider */}
+        <div className="text-center text-gray-400 my-4">or</div>
+
+        {/* Social Buttons */}
+        <div className="flex gap-4 mb-4">
+
+          <button
+            onClick={signupWithGoogle}
+            className="flex items-center justify-center gap-2 w-full border p-3 rounded hover:bg-gray-100"
+          >
+            <FaGoogle className="text-red-500" />
+            Google
+          </button>
+
+          <button
+            onClick={signupWithGithub}
+            className="flex items-center justify-center gap-2 w-full border p-3 rounded hover:bg-gray-100"
+          >
+            <FaGithub />
+            GitHub
+          </button>
+
         </div>
-    );
+
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-500 mt-4">
+          Already have an account?{" "}
+          <span
+            className="text-red-500 cursor-pointer"
+            onClick={() => navigate("/signin")}
+          >
+            Login
+          </span>
+        </p>
+
+      </div>
+    </div>
+  );
 }
 
 export default Signup;
