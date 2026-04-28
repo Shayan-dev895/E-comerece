@@ -36,8 +36,11 @@ function Signin() {
       await signInWithPopup(auth, googleProvider);
       alert("Google Login Successful ✅");
       navigate("/");
+      console.log("LOGIN CLICKED")
     } catch (error) {
       alert(error.message);
+      console.log("Login Error:", error.code);
+      console.log("Login Error Message:", error.message);
     }
   };
 
